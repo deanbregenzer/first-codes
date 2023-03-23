@@ -1,0 +1,13 @@
+#This Function return those coordinates where x and y are identical
+def equal_coordinates(coordinates):
+     
+    result =[] #creating a new list
+    for v in coordinates: #the loop iterate over the list , v are the tupels
+        x,y = v #This line unpackes the tuple into the two variable
+        if x == y : #Checks if the variable are identical or have the same value
+            result += [v] #if that's the case the result is being overwritten with the new result 
+            #The new result is the tuple in a list so the tuple gets taken over
+    return result #last line returns the result 
+    
+print(equal_coordinates([(1, 2), (2, 2), (3, 2)]))
+
