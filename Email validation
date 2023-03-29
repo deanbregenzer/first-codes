@@ -1,0 +1,68 @@
+# Define a function to check if a string contains only valid characters
+def has_invalid_characters(prefix_domain):
+    # Define the set of valid characters
+    valid = "abcdefghijklmnopqrstuvwxyz0123456789."
+    # Loop through each character in the string
+    for x in prefix_domain:
+        # If a character is not in the valid set, return True
+        if x not in valid:
+            return True
+    # If all characters are valid, return False
+    return False
+   
+# Define a function to check if an email address is valid
+def is_valid(email):
+    # Check if the email address contains exactly one "@" character
+    if email.count("@")  != 1 :
+        return False
+    
+    # Split the email address into prefix and domain
+    prefix, domain  = email.split("@") 
+    
+    # Check if the prefix has a non-zero length
+    if len(prefix) == 0:
+        return False
+        
+    # Check if the domain contains exactly one "." character
+    if domain.count(".") != 1:
+        return False
+     
+    # Split the domain into domain name and extension
+    domain_name , extension = domain.split(".")
+    
+    # Check if the domain name and extension have non-zero length
+    if len(domain_name) == 0 or len(extension) == 0:
+        return False   
+       
+    # Check if the prefix and domain only contain valid characters
+    if has_invalid_characters(prefix) == True or has_invalid_characters(domain) == True :
+        return False
+    
+    # If all checks pass, the email address is valid
+    return True 
+        
+
+# Define a list of email addresses to test
+emails = [
+    "test@example.com",
+    "valid@gmail.com",
+    "invalid@gmail",
+    "invalid",
+    "not an email",
+    "invalid@email",
+    "!@/",
+    "test@@example.com",
+    "test@.com",
+    "test@site.",
+    "@example.com",
+    "an.example@test",
+    "te#st@example.com",
+    "test@exam!ple.com"
+]
+
+# Loop through each email address in the list and print whether it is valid or invalid
+for email in emails:
+    if is_valid(email) == True :
+        print(email + " is valid")
+    if is_valid(email) == False:
+        print(email + " is invalid")
