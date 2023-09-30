@@ -1,0 +1,32 @@
+import random
+list = ["mamas", "papa", "kinder"] #This is the list where the random words will be picked from
+word = random.choice(list) #this built in function choses random words out of "list"
+
+guessed_chars = ["_"] * len(word) # the word will be shown in underlines scores with the same length
+fails = 0 # to count failed attempts
+print("".join(guessed_chars)) #the guessed characters will be added to an empty string
+while True: # This is a while loop which will keep asking the user for information till a certain condition is fullfilled
+    try:
+        char = input("Guess the character: ").lower() #make the input lower case sensitive 
+        if char in word:
+            print(True)
+            for index in range(len(word)):
+                if word[index] == char:
+                    guessed_chars[index] = char # if the guessed char matches the char in the word it will be overwritten and shown 
+            print(guessed_chars)
+
+            if "".join(guessed_chars) == word: #after guessing the whole word the next condition is fullfilled
+                print("Congratulations! You guessed the word:", word)
+                break
+
+
+        else: #In this else function are the atemps counted, it put it to 5 and wrote a text after the user lost the game
+            print(False)
+            fails += 1
+            if fails == 5:
+                print("You lost the game!")
+                print("The word was:",word)
+                break
+
+
+  
